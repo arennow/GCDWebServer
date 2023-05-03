@@ -390,6 +390,13 @@ extern NSString* const GCDWebServerAuthenticationMethod_DigestAccess;
  */
 - (void)stop;
 
+/**
+ *  Exactly the same as `-stop`, but it occurrs on a background thread with an appropriate QOS.
+ *  This is helpful for not blocking the main thread (which has a high QOS) on the internal call to
+ *  `dispatch_group_wait`, which waits on a queue with a lower QOS
+ */
+- (void)stopAsync;
+
 @end
 
 @interface GCDWebServer (Extensions)
